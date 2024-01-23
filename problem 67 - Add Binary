@@ -1,0 +1,61 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        int l1=a.length();
+        int l2=b.length();
+        int i=l1-1,j=l2-1;
+        int c=0,s=0;
+        String res="";
+        char c1=' ',c2=' ';
+        while(i>=0 || j>=0)
+        {
+            if(i>=0 && j>=0)
+            {
+                c1=a.charAt(i);
+                c2=b.charAt(j);
+            }
+            else if(i>=0 && j<0)
+            {
+                c1=a.charAt(i);
+                c2='0';
+            }
+            else if(i<0 && j>=0)
+            {
+                c1='0';
+                c2=b.charAt(j);
+            }
+            s=c+Character.getNumericValue(c1)+Character.getNumericValue(c2);
+            if(s>1)
+            {
+                if(s==2)
+                {
+                    c=1;
+                    res='0'+res;
+                }
+                if(s==3)
+                {
+                    c=1;
+                    res='1'+res;
+                }
+            }
+            else
+            {
+                c=0;
+                res=Integer.toString(s)+res;
+            }
+            i--;
+            j--;
+        }
+        if(c>0)
+        {
+            res=Integer.toString(c)+res;
+        }
+        int r=res.length();
+        String fin="";
+        for(int k=r-1;k>=0;k--)
+        {
+            char ch=res.charAt(k);
+            fin=ch+fin;
+        }
+        return fin;
+    }
+}
